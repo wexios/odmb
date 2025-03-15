@@ -17,6 +17,7 @@
             <span id="email"></span>
             <i class="fa-solid fa-user" id="user"></i>
         </div>
+        <div id="login"><a href="/auth">Login</a></div>
         <div id="popover" class="popover">
             <p>Welcome, User!</p>
             <a href="javascript:logout();">Logout</a>

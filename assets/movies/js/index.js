@@ -1,5 +1,6 @@
 let allFavorites = [];
 let key = "";
+$("#login").show();
 
 $(document).ready(function () {
     const authToken = localStorage.getItem("authToken");
@@ -7,6 +8,7 @@ $(document).ready(function () {
     if (authToken) {
         verifyToken(authToken)
             .then((response) => {
+                $("#login").hide();
                 $(".header").css({ display: "flex" });
                 $("#popover p").html(`Welcome, ${response.user.username}`);
                 $("#email").css({ display: "flex" }).html(response.user.email);
