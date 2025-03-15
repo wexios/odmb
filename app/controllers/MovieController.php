@@ -36,13 +36,14 @@ class MovieController
 }
 
 // Initialize and handle the request
-require '../../env.php'; // Ensure your API key is stored in env.php
+$ROOT = $_SERVER['DOCUMENT_ROOT'];
+$config = require $ROOT.'/env.php'; // Ensure your API key is stored in env.php
 header("Content-Type: application/json");
 header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Methods: GET");
 header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization");
 
-$apiKey = $apiKey; // Assuming $api is defined in env.php
+$apiKey = $config["API_KEY"]; // Assuming $api is defined in env.php
 $controller = new MovieController($apiKey);
 $key = $_GET["k"] ?? "";
 $controller->searchMovies($key);
