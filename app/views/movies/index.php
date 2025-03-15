@@ -7,10 +7,19 @@
     <title>Document</title>
     <link rel="stylesheet" href="assets/movies/css/index.css">
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
 <body>
     <div id="page">
+        <div class="header" id="user">
+            <a href="/favorites">Favorites</a>
+        <i class="fa-solid fa-user"></i>
+        </div>
+        <div id="popover" class="popover">
+            <p>Welcome, User!</p>
+            <a href="#">Profile</a> | <a href="#">Logout</a>
+        </div>
         <div id="search">
             <input type="text" id="userInput" name="search" placeholder="Search movie ...">
             <button onclick="handleClick();">Search</button>
