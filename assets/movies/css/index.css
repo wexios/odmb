@@ -193,6 +193,14 @@ html {
     border-radius: 5px;
     text-decoration: none;
 }
+#login{
+    position: absolute;
+    top: 0;
+    right: 0;
+    color: darkred;
+    font-size: 30px;
+    margin: 2rem;
+}
 #login a{
     border: none;
     color: darkred;
@@ -201,4 +209,5 @@ html {
     padding: 0.5rem;
     border-radius: 5px;
     text-decoration: none;
+    
 }
