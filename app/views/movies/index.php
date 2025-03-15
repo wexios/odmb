@@ -12,8 +12,8 @@
 <body>
     <div id="page">
         <div id="search">
-            <input type="text" id="userInput" name="search" placeholder="enter movie name">
-                <button onclick="handleClick();" >search</button>
+            <input type="text" id="userInput" name="search" placeholder="Search movie ...">
+            <button onclick="handleClick();">Search</button>
         </div>
         <div id="movies"></div>
     </div>
