@@ -1,12 +1,7 @@
-$("#loginForm").show();
-$("#registerForm").hide();
-$("#registerTab").css({
-    'background-color': '#FFF',
-    'border': '1px solid darkred',
-    'color': 'darkred'
-});
 $(document).ready(function () {
     // Show login form by default
+    $("#loginForm").show();
+    $("#registerForm").hide();
 
     $("#loginTab").css({
         'background-color': 'darkred',
@@ -119,12 +114,19 @@ $(document).ready(function () {
             type: "POST",
             contentType: "application/json",
             data: JSON.stringify({ email: email, password: password }),
+            beforeSend: function () {
+                $("#loginSubmit").prop("disabled", true).text("Logging in...");
+            },
             success: function (response) {
-                alert("Login Successful. Token: " + response.token);
                 localStorage.setItem("authToken", response.token);
+                alert("Login Successful!");
+                window.location.href = "/"; // Redirect to homepage
             },
             error: function () {
                 alert("Invalid login credentials.");
+            },
+            complete: function () {
+                $("#loginSubmit").prop("disabled", false).text("Login");
             }
         });
     });
@@ -151,6 +153,9 @@ $(document).ready(function () {
                 password: password,
                 timestamp: new Date().toUTCString()
             }),
+            beforeSend: function () {
+                $("#registerSubmit").prop("disabled", true).text("Registering...");
+            },
             success: function () {
                 alert("Registration Successful!");
                 $("#registerUsername, #registerEmail, #registerPassword").val("");
@@ -158,7 +163,62 @@ $(document).ready(function () {
             },
             error: function () {
                 alert("Registration failed.");
+            },
+            complete: function () {
+                $("#registerSubmit").prop("disabled", false).text("Register");
             }
         });
     });
+
+    // Authenticate User Before Accessing Favorites Page
+    function checkAuthAndFetchFavorites() {
+        const authToken = localStorage.getItem("authToken");
+
+        if (!authToken) {
+            alert("Please log in to see your favorites.");
+            window.location.href = "/auth";
+            return;
+        }
+
+        // Verify Token Before Fetching Favorites
+        $.ajax({
+            url: "/api/auth/verify",
+            method: "GET",
+            headers: {
+                Authorization: `Bearer ${authToken}`
+            },
+            success: function (response) {
+                console.log("Token Valid:", response);
+                fetchFavorites();
+            },
+            error: function () {
+                alert("Invalid or expired session. Please log in again.");
+                localStorage.removeItem("authToken");
+                window.location.href = "/auth";
+            }
+        });
+    }
+
+    function fetchFavorites() {
+        $("#loader").show();
+        $.ajax({
+            url: "/api/favorites",
+            method: "GET",
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem("authToken")}`
+            },
+            success: function (favorites) {
+                $("#loader").hide();
+                renderFavorites(favorites);
+            },
+            error: function () {
+                $("#loader").hide();
+                alert("Failed to fetch favorites.");
+            }
+        });
+    }
+
+    if (window.location.pathname === "/favorites") {
+        checkAuthAndFetchFavorites();
+    }
 });

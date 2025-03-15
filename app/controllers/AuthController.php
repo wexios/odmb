@@ -6,7 +6,7 @@ header("Access-Control-Allow-Headers: Content-Type, Authorization");
 
 require_once $_SERVER['DOCUMENT_ROOT']."/app/models/UserModel.php";
 
-class UserController {
+class AuthController {
     private $user;
 
     public function __construct() {
@@ -40,10 +40,10 @@ class UserController {
         }
     }
 
-    // Handle GET requests (Protected Route)
+    // Handle GET requests (Verify Token)
     private function handleGetRequests($uri) {
-        if (strpos($uri, "/protected") !== false) {
-            $this->verifyAccess();
+        if (strpos($uri, "/verify-token") !== false) {
+            $this->verifyToken();
         } else {
             $this->sendResponse(["message" => "Invalid GET request"], 400);
         }
@@ -55,7 +55,7 @@ class UserController {
             $this->sendResponse(["message" => "Missing required fields"], 400);
         }
 
-        if ($this->user->register($input['username'], $input['email'], $input['password'],$input["timestamp"])) {
+        if ($this->user->register($input['username'], $input['email'], $input['password'], $input["timestamp"])) {
             $this->sendResponse(["message" => "Registration successful"], 201);
         } else {
             $this->sendResponse(["message" => "Registration failed"], 500);
@@ -76,8 +76,8 @@ class UserController {
         }
     }
 
-    // Verify token for protected route
-    private function verifyAccess() {
+    // Verify token endpoint
+    private function verifyToken() {
         $headers = apache_request_headers();
         if (!isset($headers["Authorization"])) {
             $this->sendResponse(["message" => "No token provided"], 401);
@@ -87,7 +87,7 @@ class UserController {
         $userData = $this->user->verifyToken($token);
 
         if ($userData) {
-            $this->sendResponse(["message" => "Access granted", "user" => $userData], 200);
+            $this->sendResponse(["message" => "Token is valid", "user" => $userData], 200);
         } else {
             $this->sendResponse(["message" => "Invalid or expired token"], 403);
         }
@@ -102,6 +102,6 @@ class UserController {
 }
 
 // Process incoming requests
-$controller = new UserController();
+$controller = new AuthController();
 $controller->processRequest();
 ?>

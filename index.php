@@ -20,7 +20,10 @@ if ($request_uri === '/auth') {
     require_once __DIR__ . '/app/views/auth/index.php';
     exit;
 }
-
+if ($request_uri === '/favorites') {
+    require_once __DIR__ . '/app/views/favorites/index.php';
+    exit;
+}
 // Movie search route
 if ($request_uri === '/api/movies/search' && isset($query_params['k'])) {
     require_once __DIR__ . '/app/controllers/MovieController.php';

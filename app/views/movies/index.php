@@ -12,13 +12,14 @@
 
 <body>
     <div id="page">
-        <div class="header" id="user">
-            <a href="/favorites">Favorites</a>
-        <i class="fa-solid fa-user"></i>
+        <div class="header" >
+            <a id="favLink" href="/favorites"><i class="fa-solid fa-heart"></i>&nbsp;Favorites</a>
+            <span id="email"></span>
+            <i class="fa-solid fa-user" id="user"></i>
         </div>
         <div id="popover" class="popover">
             <p>Welcome, User!</p>
-            <a href="#">Profile</a> | <a href="#">Logout</a>
+            <button>Logout</button>
         </div>
         <div id="search">
             <input type="text" id="userInput" name="search" placeholder="Search movie ...">

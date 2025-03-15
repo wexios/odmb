@@ -73,10 +73,23 @@ html {
 
 .movie {
     margin-inline: 2rem;
+    position: relative;
 }
 
 .movie h3 {
-    max-width: 100px;
+    max-width: 80%;
+}
+.movie button{
+    background: #FFF;
+    border: none;
+    color: green;
+    position: absolute;
+    font-size: 26px;
+    top:0;
+    left: 0;
+    padding:0.5rem;
+    border-radius: 5px;
+    margin: 1rem;
 }
 
 /* HTML: <div class="loader"></div> */
@@ -84,6 +97,18 @@ html {
     width: 25px;
     aspect-ratio: 1;
     --_g: no-repeat radial-gradient(farthest-side, #FFF 94%, #0000);
+    background:
+        var(--_g) 0 0,
+        var(--_g) 100% 0,
+        var(--_g) 100% 100%,
+        var(--_g) 0 100%;
+    background-size: 20% 20%;
+    animation: l38 .5s infinite;
+}
+.loader_green {
+    width: 25px;
+    aspect-ratio: 1;
+    --_g: no-repeat radial-gradient(farthest-side, green 94%, #0000);
     background:
         var(--_g) 0 0,
         var(--_g) 100% 0,
@@ -121,6 +146,7 @@ html {
     display: none;
     width: 200px;
     z-index: 100;
+    padding:1rem;
 }
 
 /* Arrow for the popover */
@@ -132,4 +158,37 @@ html {
     border-width: 5px;
     border-style: solid;
     border-color: transparent transparent white transparent;
+}
+.info{
+    height: 8rem;
+}
+
+.header a{
+    text-decoration: none;
+    color: darkred;
+    font-weight: bold;
+    border: 1px solid darkred;
+    padding: 0.5rem;
+    border-radius: 5px;
+    font-size: 14px;
+}
+#email{
+    font-size: 10px;
+    color: darkred;
+    background: #FFF;
+    border: 1px solid #EFEFEF;
+    border-radius: 10px;
+    display: none;
+    padding: 5px!important;
+    justify-content: center;
+    align-items: center;
+    margin-inline: 1rem;
+}
+.popover button{
+    border: none;
+    color: darkred;
+    font-weight: bold;
+    border: 1px solid darkred;
+    padding: 0.5rem;
+    border-radius: 5px;
 }
