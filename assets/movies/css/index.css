@@ -184,7 +184,7 @@ html {
     align-items: center;
     margin-inline: 1rem;
 }
-.popover button{
+.popover a{
     border: none;
     color: darkred;
     font-weight: bold;
