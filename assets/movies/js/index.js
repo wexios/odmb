@@ -178,4 +178,5 @@ function toggleFavorite() {
 
 function logout(){
     localStorage.clear();
+    location.reload();
 }

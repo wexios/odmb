@@ -20,7 +20,7 @@
         </div>
         <div id="popover" class="popover">
             <p></p>
-            <a href="#">Logout</a>
+            <a href="javascript:logout();">Logout</a>
         </div>
         <h1>My Favorite Movies</h1>
         <hr />

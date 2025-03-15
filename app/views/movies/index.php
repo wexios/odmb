@@ -19,7 +19,7 @@
         </div>
         <div id="popover" class="popover">
             <p>Welcome, User!</p>
-            <button>Logout</button>
+            <a href="javascript:logout();">Logout</a>
         </div>
         <div id="search">
             <input type="text" id="userInput" name="search" placeholder="Search movie ...">
