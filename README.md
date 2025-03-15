@@ -2,7 +2,7 @@
 
 ## Environment Configuration
 
-Create a configuration file `config.php` and define the necessary environment variables:
+Create a configuration file `env.php` in the project root folder and define the necessary environment variables:
 
 ```php
 <?php
